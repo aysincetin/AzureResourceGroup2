@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  },
+  "variables": {
+    "network02Prefix": "10.0.0.0/16",
+    "network02Subnet1Name": "Subnet-1",
+    "network02Subnet1Prefix": "10.0.0.0/24",
+    "network02Subnet2Name": "Subnet-2",
+    "network02Subnet2Prefix": "10.0.1.0/24"
+  },
+  "resources": [
+    {
+      "name": "network02",
+      "type": "Microsoft.Network/virtualNetworks",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-03-30",
+      "dependsOn": [ ],
+      "tags": {
+        "displayName": "network02"
+      },
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "[variables('network02Prefix')]"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "[variables('network02Subnet1Name')]",
+            "properties": {
+              "addressPrefix": "[variables('network02Subnet1Prefix')]"
+            }
+          },
+          {
+            "name": "[variables('network02Subnet2Name')]",
+            "properties": {
+              "addressPrefix": "[variables('network02Subnet2Prefix')]"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "outputs": {
+  }
+}
